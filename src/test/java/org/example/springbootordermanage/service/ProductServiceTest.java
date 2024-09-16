@@ -1,14 +1,14 @@
-package org.example.springbootordermanage;
+package org.example.springbootordermanage.service;
 
 import org.example.springbootordermanage.model.Product;
-import org.example.springbootordermanage.service.ProductService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
 
 @SpringBootTest
 public class ProductServiceTest {
@@ -16,48 +16,51 @@ public class ProductServiceTest {
     @Autowired
     private ProductService productService;
 
-    @org.junit.Test
-    @Test
-    public void testCreateProduct() {
-        // Make sure Product has a constructor that takes name and price
-        Product product = new Product("Phone", 800.00);
+    private Product product;
 
-        // Create a product and check if it's saved correctly
+    @BeforeEach
+    public void setUp() {
+        product = new Product();
+        product.setName("Phone");
+        product.setPrice(800.00);
+        productService.createProduct(product);
+    }
+
+    @Test
+    void testCreateProduct() {
         Product savedProduct = productService.createProduct(product);
         assertNotNull(savedProduct);
         assertEquals("Phone", savedProduct.getName());
+        assertEquals(800.00, savedProduct.getPrice());
     }
 
     @Test
-    public void testGetProductById() {
-        // Assuming that a product with ID 1 exists in the database
-        Product product = productService.getProductById(1L);
-        assertNotNull(product);
-        assertEquals(1L, product.getId());
+    void testGetProductById() {
+        Product retrievedProduct = productService.getProductById(product.getId());
+        assertNotNull(retrievedProduct);
+        assertEquals(product.getId(), retrievedProduct.getId());
     }
 
     @Test
-    public void testUpdateProduct() {
-        // Assuming a product with ID 1 already exists
-        Product product = new Product("Tablet", 500.00);
-
-        // Update the product with ID 1
-        Product updatedProduct = productService.updateProduct(1L, product);
+    void testUpdateProduct() {
+        product.setName("Tablet");
+        product.setPrice(500.00);
+        Product updatedProduct = productService.updateProduct(product.getId(), product);
+        assertNotNull(updatedProduct);
         assertEquals("Tablet", updatedProduct.getName());
     }
 
     @Test
-    public void testDeleteProduct() {
-        // Assuming a product with ID 1 exists and can be deleted
-        productService.deleteProduct(1L);
-        assertNull(productService.getProductById(1L));
+    void testDeleteProduct() {
+        productService.deleteProduct(product.getId());
+        Product deletedProduct = productService.getProductById(product.getId());
+        assertNull(deletedProduct);
     }
 
     @Test
-    public void testGetAllProducts() {
-        // Fetch all products and check if the list is not empty
+    void testGetAllProducts() {
         List<Product> products = productService.getAllProducts();
         assertNotNull(products);
-        assertTrue(products.size() > 0);
+        assertFalse(products.isEmpty());
     }
 }

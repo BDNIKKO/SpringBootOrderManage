@@ -9,7 +9,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-public class Order {
+public class CustomerOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
