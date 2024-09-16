@@ -1,4 +1,3 @@
-Here's an example of how you can document your project in a `README.md` file, including methodology, test cases, test results, and build/run instructions.
 
 ---
 
@@ -37,18 +36,19 @@ TDD encourages building robust and bug-free software, as tests drive the develop
 ## Test Results
 All tests were executed successfully. Here's an overview of the results:
 
-| Test Name            | Status   | Result    |
-|----------------------|----------|-----------|
-| testCreateOrder       | Passed   | Success   |
-| testGetOrderById      | Passed   | Success   |
-| testUpdateOrder       | Passed   | Success   |
-| testDeleteOrder       | Passed   | Success   |
-| testGetAllOrders      | Passed   | Success   |
-| testCreateProduct     | Passed   | Success   |
-| testGetProductById    | Passed   | Success   |
-| testUpdateProduct     | Passed   | Success   |
-| testDeleteProduct     | Passed   | Success   |
-| testGetAllProducts    | Passed   | Success   |
+| Test Name          | Status | Result  |
+|--------------------|--------|---------|
+| testCreateOrder    | Passed | Success |
+| testGetOrderById   | Passed | Success |
+| testUpdateOrder    | Passed | Success |
+| testDeleteOrder    | Passed | Success |
+| testGetAllOrders   | Passed | Success |
+| testCreateProduct  | Passed | Success |
+| testGetProductById | Passed | Success |
+| testUpdateProduct  | Passed | Success |
+| testDeleteProduct  | Passed | Success |
+| testGetAllProducts | Passed | Success |
+
 
 ## Build and Run Instructions
 
